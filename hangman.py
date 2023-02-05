@@ -17,6 +17,50 @@ round_answer = POSSIBLE_ANSWERS[random.randint(0, len(POSSIBLE_ANSWERS)-1)]
 print(round_answer)
 
 # Print un-guessed game screen - try to make it less grim (flower?)
+"""
+1.
+  ^ ^
+ (^_^)
+/(   )\
+  U U
+
+2.
+  ^ ^
+ (-_-)
+/(   )\
+  U U
+
+3.
+  ^ ^
+ (-_-)
+-(   )-
+  U U
+
+4.
+  ^ ^
+ (u_u)
+ (^ ^)
+  U U
+
+5.
+  ^ ^
+ (u_u)
+ (^ ^)
+  o o
+
+6.
+  ^ ^
+ (o_o)
+ (^ ^)
+  o o
+
+7.
+  Y Y
+ (XOX)
+\(   )/
+  o o
+
+"""
 
 # Ask user to guess a letter, enter the answer, give up, or quit
 
