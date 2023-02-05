@@ -16,7 +16,7 @@ MAX_GUESSES_PER_ROUND = 7
 round_answer = POSSIBLE_ANSWERS[random.randint(0, len(POSSIBLE_ANSWERS)-1)]
 print(round_answer)
 
-# Print un-guessed game screen - try to make it less grim (flower?)
+# Print un-guessed game screen
 """
 1.
   ^ ^
