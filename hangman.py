@@ -201,14 +201,18 @@ num_guesses_this_round = 0
 # print_game_screen(5)
 # print_game_screen(6)
 
-# Get & validate input
-selected_option = get_user_option_selection()
+# 1. Guess a letter 2. Guess answer 3. Give up round 4. Quit
+while True:
+	# Get & validate input
+	selected_option = get_user_option_selection()
+	# Send user to char guessing prompt if selected
+	if selected_option == 1:
+		guess_char(num_guesses_this_round)
+	# Quit game
+	elif selected_option == 4:
+		exit()
 
 # Send user to answer guessing prompt if selected
-
-# Send user to char guessing prompt if selected
-if selected_option == 1:
-	guess_char(num_guesses_this_round)
 
 # Reveal answer if user gave up
 
