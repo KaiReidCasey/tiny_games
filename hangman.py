@@ -4,6 +4,31 @@ Simple hangman game
 
 import random
 
+"""Prints:
+  ^ ^
+ (^_^)
+/(   )\
+  U U
+ """
+def print_default_character():
+	print("  ^ ^\n (^_^)\n/(   )\\\n  U U")
+
+def print_character(num_round_guesses):
+	match num_round_guesses:
+		case 0:
+			print_default_character()
+		case _:
+			print_default_character()
+	pass
+
+def print_options():
+	pass
+
+def print_game_screen(num_round_guesses):
+	print_character(num_round_guesses)
+	print_options()
+	pass
+
 # Set possible answers
 POSSIBLE_ANSWERS = ["The Gay Agenda", "tacos", "Nyan Cat", \
   "Numa Numa Yay", "Badgers and Mushrooms"]
@@ -16,7 +41,10 @@ MAX_GUESSES_PER_ROUND = 7
 round_answer = POSSIBLE_ANSWERS[random.randint(0, len(POSSIBLE_ANSWERS)-1)]
 print(round_answer)
 
+num_guesses_this_round = 0
+
 # Print un-guessed game screen
+print_game_screen(num_guesses_this_round)
 """
 1.
   ^ ^
