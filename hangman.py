@@ -104,12 +104,20 @@ def print_character(num_round_guesses):
 		case _:
 			print_character_default()
 
-def print_options():
-	pass
+# Ask user to guess a letter, enter the answer, give up, or quit
+def print_options_round():
+	print("What next?")
+	print("1. Guess a letter\n2. Guess answer\n3. Give up round\n4. Quit")
+
+# def validate_option(selected_option):
+# 	try:
+# 		int(selected_option)
+# 	except:
+# 		print(f"{selected_option} is not a valid option")
 
 def print_game_screen(num_round_guesses):
 	print_character(num_round_guesses)
-	print_options()
+	print_options_round()
 	pass
 
 # Set possible answers
@@ -138,9 +146,24 @@ print_game_screen(4)
 print_game_screen(5)
 print_game_screen(6)
 
-# Ask user to guess a letter, enter the answer, give up, or quit
-
-# Validate input
+# Get & validate input
+user_input = False
+while user_input == False:
+	try:
+		print_game_screen(num_guesses_this_round)
+		selected_option = input('> ')
+		selected_option = int(selected_option)
+		if selected_option == 1 or selected_option == 2 or \
+		 selected_option == 3 or selected_option== 4:
+			user_input = True
+		else:
+			# TODO: Fix code reuse
+			print(f"{selected_option} is not a valid option.")
+			print("Please try again.")
+	except ValueError:
+		print(f"{selected_option} is not a valid option.")
+		print("Please try again.")
+		continue
 
 # Ask user for valid input if not valid
 
