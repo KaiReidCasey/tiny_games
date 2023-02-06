@@ -88,6 +88,12 @@ print_game_screen(num_guesses_this_round)
 \(   )/
   o o
 
+Win.
+  ^ ^
+ (^.^)
+\(   )/
+  U U
+
 """
 
 # Ask user to guess a letter, enter the answer, give up, or quit
