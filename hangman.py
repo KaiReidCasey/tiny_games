@@ -136,23 +136,37 @@ def get_user_option_selection():
 			continue
 
 def get_from_user_char():
-	return input('> ')
+	user_guess = str(input('> '))
+	return user_guess
 
 def check_char_against_answer(char_to_check):
-		pass
+	# print(f"char_to_check: {char_to_check}")
+	# print(f"round_answer: {round_answer}")
+	# print(f"answer_display: {answer_display}")
+	if char_to_check in round_answer and char_to_check not in answer_display:
+		return "guessed right"
+	elif char_to_check not in round_answer:
+		return "guessed wrong"
+	elif char_to_check in round_answer and char_to_check not in answer_display:
+		return "already guessed"
 
 def update_answer_display():
+	# If guess is a match, figure out where
+	# and then update answer_display
+	# Careful not to erase previous right answers!
 	pass
 
 def guess_char():
 	guessed_char = get_from_user_char()
-	in_answer = check_char_against_answer(guess_char)
-	if in_answer:
-		print("You guessed it!")
+	in_answer = check_char_against_answer(guessed_char)
+	if in_answer == 'guessed right':
+		print(f"{guessed_char} is in the answer!")
 		update_answer_display()
-		pass
-	else:
-		pass
+	elif in_answer == 'guessed wrong':
+		print("Nope!")
+		num_round_guesses += 1
+	elif in_answer == "already guessed":
+		print("You already guessed that right, silly! uwu")
 
 def print_game_screen(num_round_guesses):
 	print_character(num_round_guesses)
