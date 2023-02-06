@@ -167,6 +167,8 @@ def guess_char(num_guesses_this_round):
 		num_guesses_this_round += 1
 	elif in_answer == "already guessed":
 		print("You already guessed that right, silly! uwu")
+	# in guess_char() the scope of num_guesses_this_round is different
+	return num_guesses_this_round
 
 def print_game_screen(num_round_guesses):
 	print_character(num_round_guesses)
@@ -207,7 +209,7 @@ while True:
 	selected_option = get_user_option_selection()
 	# Send user to char guessing prompt if selected
 	if selected_option == 1:
-		guess_char(num_guesses_this_round)
+		num_guesses_this_round = guess_char(num_guesses_this_round)
 	# Quit game
 	elif selected_option == 4:
 		exit()
