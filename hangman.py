@@ -123,7 +123,7 @@ def print_game_screen(num_round_guesses):
 # Set possible answers
 POSSIBLE_ANSWERS = ["The Gay Agenda", "tacos", "Nyan Cat", \
   "Numa Numa Yay", "Badgers and Mushrooms"]
-print(POSSIBLE_ANSWERS)
+# print(POSSIBLE_ANSWERS)
 
 # Set num guesses allowed per round
 # Can't be used in a case statement without dot notation
@@ -131,20 +131,20 @@ MAX_GUESSES_PER_ROUND = 7
 
 # Randomly select an answer for this round
 round_answer = POSSIBLE_ANSWERS[random.randint(0, len(POSSIBLE_ANSWERS)-1)]
-print(round_answer)
+# print(round_answer)
 
 num_guesses_this_round = 0
 
 # Print un-guessed game screen
 # print_game_screen(num_guesses_this_round)
-print_game_screen(-1)
-print_game_screen(0)
-print_game_screen(1)
-print_game_screen(2)
-print_game_screen(3)
-print_game_screen(4)
-print_game_screen(5)
-print_game_screen(6)
+# print_game_screen(-1)
+# print_game_screen(0)
+# print_game_screen(1)
+# print_game_screen(2)
+# print_game_screen(3)
+# print_game_screen(4)
+# print_game_screen(5)
+# print_game_screen(6)
 
 # Get & validate input
 user_input = False
