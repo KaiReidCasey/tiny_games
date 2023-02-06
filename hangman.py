@@ -109,11 +109,25 @@ def print_options_round():
 	print("What next?")
 	print("1. Guess a letter\n2. Guess answer\n3. Give up round\n4. Quit")
 
-# def validate_option(selected_option):
-# 	try:
-# 		int(selected_option)
-# 	except:
-# 		print(f"{selected_option} is not a valid option")
+def get_user_option_selection():
+	user_input = False
+	while user_input == False:
+		try:
+			print_game_screen(num_guesses_this_round)
+			selected_option = input('> ')
+			selected_option = int(selected_option)
+			if selected_option == 1 or selected_option == 2 or \
+			 selected_option == 3 or selected_option== 4:
+				user_input = True
+				return selected_option
+			else:
+				# TODO: Fix code reuse
+				print(f"{selected_option} is not a valid option.")
+				print("Please try again.")
+		except ValueError:
+			print(f"{selected_option} is not a valid option.")
+			print("Please try again.")
+			continue
 
 def print_game_screen(num_round_guesses):
 	print_character(num_round_guesses)
@@ -147,25 +161,7 @@ num_guesses_this_round = 0
 # print_game_screen(6)
 
 # Get & validate input
-user_input = False
-while user_input == False:
-	try:
-		print_game_screen(num_guesses_this_round)
-		selected_option = input('> ')
-		selected_option = int(selected_option)
-		if selected_option == 1 or selected_option == 2 or \
-		 selected_option == 3 or selected_option== 4:
-			user_input = True
-		else:
-			# TODO: Fix code reuse
-			print(f"{selected_option} is not a valid option.")
-			print("Please try again.")
-	except ValueError:
-		print(f"{selected_option} is not a valid option.")
-		print("Please try again.")
-		continue
-
-# Ask user for valid input if not valid
+selected_option = get_user_option_selection()
 
 # Send user to answer guessing prompt if selected
 
