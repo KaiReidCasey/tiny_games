@@ -171,6 +171,7 @@ MAX_GUESSES_PER_ROUND = 7
 
 # Randomly select an answer for this round
 round_answer = POSSIBLE_ANSWERS[random.randint(0, len(POSSIBLE_ANSWERS)-1)]
+# Ref: https://flexiple.com/python/python-regex-replace/
 answer_display = re.sub("[A-Za-z]", "^", round_answer)
 
 num_guesses_this_round = 0
