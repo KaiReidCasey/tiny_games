@@ -156,7 +156,7 @@ def update_answer_display():
 	# Careful not to erase previous right answers!
 	pass
 
-def guess_char():
+def guess_char(num_guesses_this_round):
 	guessed_char = get_from_user_char()
 	in_answer = check_char_against_answer(guessed_char)
 	if in_answer == 'guessed right':
@@ -164,7 +164,7 @@ def guess_char():
 		update_answer_display()
 	elif in_answer == 'guessed wrong':
 		print("Nope!")
-		num_round_guesses += 1
+		num_guesses_this_round += 1
 	elif in_answer == "already guessed":
 		print("You already guessed that right, silly! uwu")
 
@@ -208,7 +208,7 @@ selected_option = get_user_option_selection()
 
 # Send user to char guessing prompt if selected
 if selected_option == 1:
-	guess_char()
+	guess_char(num_guesses_this_round)
 
 # Reveal answer if user gave up
 
