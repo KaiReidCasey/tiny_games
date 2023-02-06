@@ -3,6 +3,7 @@ Simple hangman game
 """
 
 import random
+import re
 
 """Prints:
   ^ ^
@@ -83,6 +84,7 @@ def print_character_lose():
 	print("  Y Y\n (XOX)\n\\(   )/\n  o o")
 
 def print_character(num_round_guesses):
+	print("\n")
 	# Ref: https://www.freecodecamp.org/news/python-switch-statement-switch-case-example/
 	match num_round_guesses:
 		case 0:
@@ -103,6 +105,10 @@ def print_character(num_round_guesses):
 			print_character_win()
 		case _:
 			print_character_default()
+
+def print_answer_display():
+	print("\nWord or phrase to guess:")
+	print(f"{answer_display}\n")
 
 # Ask user to guess a letter, enter the answer, give up, or quit
 def print_options_round():
@@ -129,8 +135,28 @@ def get_user_option_selection():
 			print("Please try again.")
 			continue
 
+def get_from_user_char():
+	return input('> ')
+
+def check_char_against_answer(char_to_check):
+		pass
+
+def update_answer_display():
+	pass
+
+def guess_char():
+	guessed_char = get_from_user_char()
+	in_answer = check_char_against_answer(guess_char)
+	if in_answer:
+		print("You guessed it!")
+		update_answer_display()
+		pass
+	else:
+		pass
+
 def print_game_screen(num_round_guesses):
 	print_character(num_round_guesses)
+	print_answer_display()
 	print_options_round()
 	pass
 
@@ -145,7 +171,7 @@ MAX_GUESSES_PER_ROUND = 7
 
 # Randomly select an answer for this round
 round_answer = POSSIBLE_ANSWERS[random.randint(0, len(POSSIBLE_ANSWERS)-1)]
-# print(round_answer)
+answer_display = re.sub("[A-Za-z]", "^", round_answer)
 
 num_guesses_this_round = 0
 
@@ -166,6 +192,8 @@ selected_option = get_user_option_selection()
 # Send user to answer guessing prompt if selected
 
 # Send user to char guessing prompt if selected
+if selected_option == 1:
+	guess_char()
 
 # Reveal answer if user gave up
 
