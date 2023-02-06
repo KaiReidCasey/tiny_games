@@ -102,7 +102,6 @@ def print_character(num_round_guesses):
 			print_character_win()
 		case _:
 			print_character_default()
-	pass
 
 def print_options():
 	pass
