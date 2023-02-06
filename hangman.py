@@ -160,13 +160,20 @@ def guess_char(num_guesses_this_round):
 	guessed_char = get_from_user_char()
 	in_answer = check_char_against_answer(guessed_char)
 	if in_answer == 'guessed right':
-		print(f"{guessed_char} is in the answer!")
+		print("\n~~^*^~~^*^~~^*^~~^*^~~")
+		print(f"  {guessed_char} is in the answer!")
+		print("~~^*^~~^*^~~^*^~~^*^~~")
 		update_answer_display()
 	elif in_answer == 'guessed wrong':
-		print("Nope!")
+		print("\n~~^*^~~^*^~~^*^~~^*^~~")
+		print("  Nope!")
+		print("~~^*^~~^*^~~^*^~~^*^~~")
 		num_guesses_this_round += 1
+	# Not reachable yet
 	elif in_answer == "already guessed":
-		print("You already guessed that right, silly! uwu")
+		print("\n~~^*^~~^*^~~^*^~~^*^~~")
+		print("  You already guessed that right, silly! uwu")
+		print("~~^*^~~^*^~~^*^~~^*^~~")
 	# in guess_char() the scope of num_guesses_this_round is different
 	return num_guesses_this_round
 
@@ -212,6 +219,7 @@ while True:
 		num_guesses_this_round = guess_char(num_guesses_this_round)
 	# Quit game
 	elif selected_option == 4:
+		print("Goodbye!")
 		exit()
 
 # Send user to answer guessing prompt if selected
