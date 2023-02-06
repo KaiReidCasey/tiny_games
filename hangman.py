@@ -83,6 +83,7 @@ def print_character_lose():
 	print("  Y Y\n (XOX)\n\\(   )/\n  o o")
 
 def print_character(num_round_guesses):
+	# Ref: https://www.freecodecamp.org/news/python-switch-statement-switch-case-example/
 	match num_round_guesses:
 		case 0:
 			print_character_default()
