@@ -4,107 +4,32 @@ Simple hangman game
 
 import random
 import re
-
-"""Prints:
-  ^ ^
- (^_^)
-/(   )\
-  U U
- """
-def print_character_default():
-	print("  ^ ^\n (^_^)\n/(   )\\\n  U U")
-
-"""
-Prints:
-  ^ ^
- (-_-)
-/(   )\
-  U U
-"""
-def print_character_miss_1():
-	print("  ^ ^\n (-_-)\n/(   )\\\n  U U")
-
-"""
-Prints:
-  ^ ^
- (-_-)
--(   )-
-  U U
-"""
-def print_character_miss_2():
-	print("  ^ ^\n (-_-)\n-(   )-\n  U U")
-
-"""
-Prints:
-  ^ ^
- (u_u)
- (^ ^)
-  U U
-"""
-def print_character_miss_3():
-	print("  ^ ^\n (u_u)\n (^ ^)\n  U U")
-
-"""
-Prints:
-  ^ ^
- (u_u)
- (^ ^)
-  o o
-"""
-def print_character_miss_4():
-	print("  ^ ^\n (u_u)\n (^ ^)\n  o o")
-
-"""
-Prints:
-  ^ ^
- (o_o)
- (^ ^)
-  o o
-"""
-def print_character_miss_5():
-	print("  ^ ^\n (o_o)\n (^ ^)\n  o o")
-
-"""Prints:
-  ^ ^
- (^.^)
-\(   )/
-  U U
-  """
-def print_character_win():
-	print("  ^ ^\n (^.^)\n\\(   )/\n  U U")
-
-"""
-Prints:
-  Y Y
- (XOX)
-\(   )/
-  o o
-"""
-def print_character_lose():
-	print("  Y Y\n (XOX)\n\\(   )/\n  o o")
+import ascii_creatures
 
 def print_character(num_round_guesses):
+	ascii_creature_printer = ascii_creatures.Ascii_Creatures()
 	print("\n")
 	# Ref: https://www.freecodecamp.org/news/python-switch-statement-switch-case-example/
 	match num_round_guesses:
 		case 0:
-			print_character_default()
+			ascii_creature_printer.print_character_default() # too many args
+			# ascii_creatures.print_character_default() # can't find function
 		case 1:
-			print_character_miss_1()
+			ascii_creature_printer.print_character_miss_1()
 		case 2:
-			print_character_miss_2()
+			ascii_creature_printer.print_character_miss_2()
 		case 3:
-			print_character_miss_3()
+			ascii_creature_printer.print_character_miss_3()
 		case 4:
-			print_character_miss_4()
+			ascii_creature_printer.print_character_miss_4()
 		case 5:
-			print_character_miss_5()
+			ascii_creature_printer.print_character_miss_5()
 		case 6:
-			print_character_lose()
+			ascii_creature_printer.print_character_lose()
 		case -1:
-			print_character_win()
+			ascii_creature_printer.print_character_win()
 		case _:
-			print_character_default()
+			ascii_creature_printer.print_character_default()
 
 def print_answer_display():
 	print("\nWord or phrase to guess:")
