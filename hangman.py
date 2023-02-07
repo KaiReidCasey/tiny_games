@@ -79,11 +79,13 @@ def check_char_against_answer(char_to_check):
 	 char_to_check not in answer_display:
 		return "already guessed"
 
-def update_answer_display():
-	# If guess is a match, figure out where
-	# and then update answer_display
+def update_answer_display(guessed_char):
+	# Figure out where match exists and then update answer_display
 	# Careful not to erase previous right answers!
-	pass
+	print(f"Indices where {guessed_char} is present:")
+	print([i for i, ltr in enumerate(round_answer) \
+	 if ltr.lower() == guessed_char.lower()])
+	print(answer_display)
 
 def guess_char(num_guesses_this_round):
 	guessed_char = get_from_user_char()
@@ -92,7 +94,7 @@ def guess_char(num_guesses_this_round):
 		print("\n~~^*^~~^*^~~^*^~~^*^~~")
 		print(f"  {guessed_char} is in the answer!")
 		print("~~^*^~~^*^~~^*^~~^*^~~")
-		update_answer_display()
+		update_answer_display(guessed_char)
 	elif in_answer == 'guessed wrong':
 		print("\n~~^*^~~^*^~~^*^~~^*^~~")
 		print("  Nope!")
