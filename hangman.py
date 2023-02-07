@@ -83,6 +83,7 @@ def update_answer_display(guessed_char):
 	# Figure out where match exists and then update answer_display
 	# Careful not to erase previous right answers!
 	print(f"Indices where {guessed_char} is present:")
+	# Ref: https://stackoverflow.com/questions/11122291/how-to-find-char-in-string-and-get-all-the-indexes#answer-11122355
 	match_indeces = [i for i, ltr in enumerate(round_answer) \
 	 if ltr.lower() == guessed_char.lower()]
 	print(match_indeces)
