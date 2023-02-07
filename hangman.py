@@ -68,11 +68,15 @@ def check_char_against_answer(char_to_check):
 	# print(f"char_to_check: {char_to_check}")
 	# print(f"round_answer: {round_answer}")
 	# print(f"answer_display: {answer_display}")
-	if char_to_check in round_answer and char_to_check not in answer_display:
+	round_answer_lower = round_answer.lower()
+	char_to_check_lower = char_to_check.lower()
+	if char_to_check_lower in round_answer_lower and \
+	 char_to_check not in answer_display:
 		return "guessed right"
-	elif char_to_check not in round_answer:
+	elif char_to_check_lower not in round_answer_lower:
 		return "guessed wrong"
-	elif char_to_check in round_answer and char_to_check not in answer_display:
+	elif char_to_check_lower in round_answer_lower and \
+	 char_to_check not in answer_display:
 		return "already guessed"
 
 def update_answer_display():
