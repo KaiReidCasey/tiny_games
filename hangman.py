@@ -155,15 +155,11 @@ while True:
 
 # Reveal answer if user gave up
 
-# Exit if user quit
-
 # Handle correct char guess
 
 # Handle incorrect char guess
 
 # Handle correct answer guess
-
-# Handle incorrect answer guess
 
 # Create win screen
 
