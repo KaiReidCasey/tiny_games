@@ -79,17 +79,26 @@ def check_char_against_answer(char_to_check):
 	 char_to_check not in answer_display:
 		return "already guessed"
 
-def update_answer_display(guessed_char):
+# Ref: https://www.w3schools.com/python/python_variables_global.asp#midcontentadcontainer
+def update_answer_display(new_answer_display):
+	global answer_display
+	answer_display = new_answer_display
+
+def create_new_answer_display(guessed_char):
 	# Figure out where match exists and then update answer_display
 	# Careful not to erase previous right answers!
-	print(f"Indices where {guessed_char} is present:")
 	# Ref: https://stackoverflow.com/questions/11122291/how-to-find-char-in-string-and-get-all-the-indexes#answer-11122355
 	match_indeces = [i for i, ltr in enumerate(round_answer) \
 	 if ltr.lower() == guessed_char.lower()]
-	print(match_indeces)
-
-	# answer_display[place] = guessed_char
-	print(answer_display)
+	temp_str_list = []
+	chars_built_so_far = 0
+	for x in match_indeces:
+		temp_str_list += answer_display[chars_built_so_far:x] + round_answer[x]
+		chars_built_so_far = chars_built_so_far + len(answer_display[chars_built_so_far:x]) + 1
+	if len(temp_str_list) < len(answer_display):
+		temp_str_list += answer_display[len(temp_str_list):]
+	new_answer_display = "".join(temp_str_list)
+	return new_answer_display
 
 def guess_char(num_guesses_this_round):
 	guessed_char = get_from_user_char()
@@ -98,7 +107,8 @@ def guess_char(num_guesses_this_round):
 		print("\n~~^*^~~^*^~~^*^~~^*^~~")
 		print(f"  {guessed_char} is in the answer!")
 		print("~~^*^~~^*^~~^*^~~^*^~~")
-		update_answer_display(guessed_char)
+		new_answer_display = create_new_answer_display(guessed_char)
+		update_answer_display(new_answer_display)
 	elif in_answer == 'guessed wrong':
 		print("\n~~^*^~~^*^~~^*^~~^*^~~")
 		print("  Nope!")
@@ -109,7 +119,6 @@ def guess_char(num_guesses_this_round):
 		print("\n~~^*^~~^*^~~^*^~~^*^~~")
 		print("  You already guessed that right, silly! uwu")
 		print("~~^*^~~^*^~~^*^~~^*^~~")
-	# in guess_char() the scope of num_guesses_this_round is different
 	return num_guesses_this_round
 
 def print_game_screen(num_round_guesses):
@@ -130,6 +139,7 @@ MAX_GUESSES_PER_ROUND = 7
 # Randomly select an answer for this round
 round_answer = POSSIBLE_ANSWERS[random.randint(0, len(POSSIBLE_ANSWERS)-1)]
 # Ref: https://flexiple.com/python/python-regex-replace/
+global answer_display 
 answer_display = re.sub("[A-Za-z]", "^", round_answer)
 
 num_guesses_this_round = 0
@@ -160,10 +170,6 @@ while True:
 # Send user to answer guessing prompt if selected
 
 # Reveal answer if user gave up
-
-# Handle correct char guess
-
-# Handle incorrect char guess
 
 # Handle correct answer guess
 
