@@ -18,8 +18,7 @@ def print_character():
 	# Ref: https://www.freecodecamp.org/news/python-switch-statement-switch-case-example/
 	match num_round_guesses:
 		case 0:
-			ascii_creature_printer.print_character_default() # too many args
-			# ascii_creatures.print_character_default() # can't find function
+			ascii_creature_printer.print_character_default()
 		case 1:
 			ascii_creature_printer.print_character_miss_1()
 		case 2:
@@ -190,7 +189,6 @@ def print_game_screen():
 global POSSIBLE_ANSWERS
 POSSIBLE_ANSWERS = ["The Gay Agenda", "tacos", "Nyan Cat", \
   "Numa Numa Yay", "Badgers and Mushrooms"]
-# print(POSSIBLE_ANSWERS)
 
 # Set num guesses allowed per round
 # Count begins at 0, so 6 means 7 guesses
@@ -217,7 +215,6 @@ while True:
 	# Send user to char guessing prompt if selected
 	if selected_option == 1:
 		guess_char()
-	# Quit game
 	elif selected_option == 4:
 		print("Goodbye!")
 		exit()
