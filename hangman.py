@@ -71,9 +71,6 @@ def get_from_user_char():
 	return user_guess
 
 def check_char_against_answer(char_to_check):
-	# print(f"char_to_check: {char_to_check}")
-	# print(f"round_answer: {round_answer}")
-	# print(f"answer_display: {answer_display}")
 	round_answer_lower = round_answer.lower()
 	char_to_check_lower = char_to_check.lower()
 	if char_to_check_lower in round_answer_lower and \
@@ -185,7 +182,6 @@ def print_game_screen():
 	print_character()
 	print_answer_display()
 	print_options_round()
-	pass
 
 
 # VARIABLES, GLOBALS ETC
@@ -236,8 +232,6 @@ while True:
 # May want a way to prevent repeated words in one session
 
 # Start new game in a way that allows code reuse if selected
-
-# Exit if selected
 
 # Optional later - add colors
 
