@@ -92,26 +92,33 @@ def get_location_of_matched_chars(guessed_char):
 	 if ltr.lower() == guessed_char.lower()]
 	return match_indeces
 
-def create_new_answer_display_array_of_strings(match_indeces):
+def create_new_answer_display_list_of_strings(match_indeces):
 	temp_str_list = []
 	chars_built_so_far = 0
+	# Grabs the current display string up until the next match
+	# Adds the newly guessed char where it belongs
+	# Stores them in a list of chars
+	# Tracks what has already been grabbed so string stays same length
+	# Repeats until you have the full string in an array
 	for x in match_indeces:
 		temp_str_list += answer_display[chars_built_so_far:x] + round_answer[x]
 		chars_built_so_far = chars_built_so_far + len(answer_display[chars_built_so_far:x]) + 1
-	return temp_str_list
-
-def build_new_answer_display_string(temp_str_list):
+	# If there are trailing chars after the last match,
+	# grab them, too
 	if len(temp_str_list) < len(answer_display):
 		temp_str_list += answer_display[len(temp_str_list):]
-	new_answer_display = "".join(temp_str_list)
-	return new_answer_display
+	return temp_str_list
+
+def convert_list_of_strings_to_string(str_list):
+	new_string = "".join(str_list)
+	return new_string
 
 def create_new_answer_display(guessed_char):
 	# Figure out where match exists and then update answer_display
 	# Careful not to erase previous right answers!
 	match_indeces = get_location_of_matched_chars(guessed_char)
-	temp_str_list = create_new_answer_display_array_of_strings(match_indeces)
-	new_answer_display = build_new_answer_display_string(temp_str_list)
+	temp_str_list = create_new_answer_display_list_of_strings(match_indeces)
+	new_answer_display = convert_list_of_strings_to_string(temp_str_list)
 	return new_answer_display
 
 def check_if_round_won():
