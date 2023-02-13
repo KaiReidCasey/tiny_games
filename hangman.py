@@ -100,6 +100,24 @@ def create_new_answer_display(guessed_char):
 	new_answer_display = "".join(temp_str_list)
 	return new_answer_display
 
+def check_if_won():
+	if '^' in answer_display:
+		return False
+	else:
+		return True
+
+def check_if_lost():
+	# TODO: Make functional
+	return False
+
+def get_win_status():
+	if check_if_won() is True:
+		return "Won round!"
+	elif check_if_lost() is True:
+		return "Lost round!"
+	else:
+		return "Current round neither won nor lost."
+
 def guess_char(num_guesses_this_round):
 	guessed_char = get_from_user_char()
 	in_answer = check_char_against_answer(guessed_char)
@@ -109,6 +127,9 @@ def guess_char(num_guesses_this_round):
 		print("~~^*^~~^*^~~^*^~~^*^~~")
 		new_answer_display = create_new_answer_display(guessed_char)
 		update_answer_display(new_answer_display)
+		if get_win_status() == "Won round!":
+			print("You've won this round!!")
+			print("Please quit and restart the program to play again! :3")
 	elif in_answer == 'guessed wrong':
 		print("\n~~^*^~~^*^~~^*^~~^*^~~")
 		print("  Nope!")
