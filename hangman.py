@@ -128,31 +128,51 @@ def num_round_guesses_clear():
 	global num_round_guesses
 	num_round_guesses = 0
 
-def guess_char():
-	guessed_char = get_from_user_char()
-	in_answer = check_char_against_answer(guessed_char)
+def respond_char_guessed_correct(guessed_char):
+	print("\n~~^*^~~^*^~~^*^~~^*^~~")
+	print(f"  {guessed_char} is in the answer!")
+	print("~~^*^~~^*^~~^*^~~^*^~~")
+
+def respond_char_guessed_wrong():
+	print("\n~~^*^~~^*^~~^*^~~^*^~~")
+	print("  Nope!")
+	print("~~^*^~~^*^~~^*^~~^*^~~")
+
+# Not reachable yet
+def respond_char_guessed_duplicate():
+	print("\n~~^*^~~^*^~~^*^~~^*^~~")
+	print("  You already guessed that right, silly! uwu")
+	print("~~^*^~~^*^~~^*^~~^*^~~")
+
+def print_win_message():
+	print("You've won this round!!")
+	print("Please quit and restart the program to play again! :3")
+
+def print_message_round_lost():
+	print("You've lost this round!!")
+	print("Please quit and restart the program to play again! :3")
+
+def respond_to_guessed_char(guessed_char, in_answer):
 	if in_answer == 'guessed right':
-		print("\n~~^*^~~^*^~~^*^~~^*^~~")
-		print(f"  {guessed_char} is in the answer!")
-		print("~~^*^~~^*^~~^*^~~^*^~~")
+		respond_char_guessed_correct(guessed_char)
 		new_answer_display = create_new_answer_display(guessed_char)
 		update_answer_display(new_answer_display)
 		if get_win_status() == "Won round!":
-			print("You've won this round!!")
-			print("Please quit and restart the program to play again! :3")
+			print_win_message()
 	elif in_answer == 'guessed wrong':
-		print("\n~~^*^~~^*^~~^*^~~^*^~~")
-		print("  Nope!")
-		print("~~^*^~~^*^~~^*^~~^*^~~")
+		respond_char_guessed_wrong()
 		num_round_guesses_increment()
 		if get_win_status() == "Lost round!":
-			print("You've lost this round!!")
-			print("Please quit and restart the program to play again! :3")
+			print_message_round_lost()
 	# Not reachable yet
 	elif in_answer == "already guessed":
-		print("\n~~^*^~~^*^~~^*^~~^*^~~")
-		print("  You already guessed that right, silly! uwu")
-		print("~~^*^~~^*^~~^*^~~^*^~~")
+		respond_char_guessed_duplicate()
+	return
+
+def guess_char():
+	guessed_char = get_from_user_char()
+	in_answer = check_char_against_answer(guessed_char)
+	respond_to_guessed_char(guessed_char, in_answer)
 	return
 
 def print_game_screen():
