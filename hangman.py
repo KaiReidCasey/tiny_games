@@ -100,20 +100,22 @@ def create_new_answer_display(guessed_char):
 	new_answer_display = "".join(temp_str_list)
 	return new_answer_display
 
-def check_if_won():
+def check_if_round_won():
 	if '^' in answer_display:
 		return False
 	else:
 		return True
 
-def check_if_lost():
-	# TODO: Make functional
-	return False
+def check_if_round_lost():
+	if MAX_GUESSES_PER_ROUND <= num_round_guesses:
+		return True
+	else:
+		return False
 
 def get_win_status():
-	if check_if_won() is True:
+	if check_if_round_won() is True:
 		return "Won round!"
-	elif check_if_lost() is True:
+	elif check_if_round_lost() is True:
 		return "Lost round!"
 	else:
 		return "Current round neither won nor lost."
@@ -143,6 +145,9 @@ def guess_char():
 		print("  Nope!")
 		print("~~^*^~~^*^~~^*^~~^*^~~")
 		num_round_guesses_increment()
+		if get_win_status() == "Lost round!":
+			print("You've lost this round!!")
+			print("Please quit and restart the program to play again! :3")
 	# Not reachable yet
 	elif in_answer == "already guessed":
 		print("\n~~^*^~~^*^~~^*^~~^*^~~")
@@ -162,8 +167,8 @@ POSSIBLE_ANSWERS = ["The Gay Agenda", "tacos", "Nyan Cat", \
 # print(POSSIBLE_ANSWERS)
 
 # Set num guesses allowed per round
-# Can't be used in a case statement without dot notation
-MAX_GUESSES_PER_ROUND = 7
+# Count begins at 0, so 6 means 7 guesses
+MAX_GUESSES_PER_ROUND = 6
 
 # Randomly select an answer for this round
 round_answer = POSSIBLE_ANSWERS[random.randint(0, len(POSSIBLE_ANSWERS)-1)]
@@ -191,10 +196,6 @@ while True:
 # Reveal answer if user gave up
 
 # Handle correct answer guess
-
-# Create win screen
-
-# Create lost screen
 
 # Ask if user wants to play again or quit
 # May want a way to prevent repeated words in one session
