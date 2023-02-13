@@ -6,7 +6,7 @@ import random
 import re
 import ascii_creatures
 
-def print_character(num_round_guesses):
+def print_character():
 	ascii_creature_printer = ascii_creatures.Ascii_Creatures()
 	print("\n")
 	# Ref: https://www.freecodecamp.org/news/python-switch-statement-switch-case-example/
@@ -44,7 +44,7 @@ def get_user_option_selection():
 	user_input = False
 	while user_input == False:
 		try:
-			print_game_screen(num_guesses_this_round)
+			print_game_screen()
 			selected_option = input('> ')
 			selected_option = int(selected_option)
 			if selected_option == 1 or selected_option == 2 or \
@@ -118,7 +118,15 @@ def get_win_status():
 	else:
 		return "Current round neither won nor lost."
 
-def guess_char(num_guesses_this_round):
+def num_round_guesses_increment():
+	global num_round_guesses
+	num_round_guesses += 1
+
+def num_round_guesses_clear():
+	global num_round_guesses
+	num_round_guesses = 0
+
+def guess_char():
 	guessed_char = get_from_user_char()
 	in_answer = check_char_against_answer(guessed_char)
 	if in_answer == 'guessed right':
@@ -134,16 +142,16 @@ def guess_char(num_guesses_this_round):
 		print("\n~~^*^~~^*^~~^*^~~^*^~~")
 		print("  Nope!")
 		print("~~^*^~~^*^~~^*^~~^*^~~")
-		num_guesses_this_round += 1
+		num_round_guesses_increment()
 	# Not reachable yet
 	elif in_answer == "already guessed":
 		print("\n~~^*^~~^*^~~^*^~~^*^~~")
 		print("  You already guessed that right, silly! uwu")
 		print("~~^*^~~^*^~~^*^~~^*^~~")
-	return num_guesses_this_round
+	return
 
-def print_game_screen(num_round_guesses):
-	print_character(num_round_guesses)
+def print_game_screen():
+	print_character()
 	print_answer_display()
 	print_options_round()
 	pass
@@ -163,7 +171,8 @@ round_answer = POSSIBLE_ANSWERS[random.randint(0, len(POSSIBLE_ANSWERS)-1)]
 global answer_display 
 answer_display = re.sub("[A-Za-z]", "^", round_answer)
 
-num_guesses_this_round = 0
+global num_round_guesses
+num_round_guesses_clear()
 
 # 1. Guess a letter 2. Guess answer 3. Give up round 4. Quit
 while True:
@@ -171,7 +180,7 @@ while True:
 	selected_option = get_user_option_selection()
 	# Send user to char guessing prompt if selected
 	if selected_option == 1:
-		num_guesses_this_round = guess_char(num_guesses_this_round)
+		guess_char()
 	# Quit game
 	elif selected_option == 4:
 		print("Goodbye!")
