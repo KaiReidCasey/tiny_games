@@ -125,6 +125,7 @@ def check_if_round_won():
 	if '^' in answer_display:
 		return False
 	else:
+		num_round_guesses_won()
 		return True
 
 def check_if_round_lost():
@@ -148,6 +149,10 @@ def num_round_guesses_increment():
 def num_round_guesses_clear():
 	global num_round_guesses
 	num_round_guesses = 0
+
+def num_round_guesses_won():
+	global num_round_guesses
+	num_round_guesses = -1
 
 def respond_char_guessed_correct(guessed_char):
 	print("\n~~^*^~~^*^~~^*^~~^*^~~")
