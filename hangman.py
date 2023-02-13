@@ -86,20 +86,32 @@ def update_answer_display(new_answer_display):
 	global answer_display
 	answer_display = new_answer_display
 
-def create_new_answer_display(guessed_char):
-	# Figure out where match exists and then update answer_display
-	# Careful not to erase previous right answers!
+def get_location_of_matched_chars(guessed_char):
 	# Ref: https://stackoverflow.com/questions/11122291/how-to-find-char-in-string-and-get-all-the-indexes#answer-11122355
 	match_indeces = [i for i, ltr in enumerate(round_answer) \
 	 if ltr.lower() == guessed_char.lower()]
+	return match_indeces
+
+def create_new_answer_display_array_of_strings(match_indeces):
 	temp_str_list = []
 	chars_built_so_far = 0
 	for x in match_indeces:
 		temp_str_list += answer_display[chars_built_so_far:x] + round_answer[x]
 		chars_built_so_far = chars_built_so_far + len(answer_display[chars_built_so_far:x]) + 1
+	return temp_str_list
+
+def build_new_answer_display_string(temp_str_list):
 	if len(temp_str_list) < len(answer_display):
 		temp_str_list += answer_display[len(temp_str_list):]
 	new_answer_display = "".join(temp_str_list)
+	return new_answer_display
+
+def create_new_answer_display(guessed_char):
+	# Figure out where match exists and then update answer_display
+	# Careful not to erase previous right answers!
+	match_indeces = get_location_of_matched_chars(guessed_char)
+	temp_str_list = create_new_answer_display_array_of_strings(match_indeces)
+	new_answer_display = build_new_answer_display_string(temp_str_list)
 	return new_answer_display
 
 def check_if_round_won():
