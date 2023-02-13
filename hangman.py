@@ -2,9 +2,15 @@
 Simple hangman game
 """
 
+
+# IMPORTS
+
 import random
 import re
 import ascii_creatures
+
+
+# FUNCTIONS:
 
 def print_character():
 	ascii_creature_printer = ascii_creatures.Ascii_Creatures()
@@ -181,23 +187,32 @@ def print_game_screen():
 	print_options_round()
 	pass
 
+
+# VARIABLES, GLOBALS ETC
+
 # Set possible answers
+global POSSIBLE_ANSWERS
 POSSIBLE_ANSWERS = ["The Gay Agenda", "tacos", "Nyan Cat", \
   "Numa Numa Yay", "Badgers and Mushrooms"]
 # print(POSSIBLE_ANSWERS)
 
 # Set num guesses allowed per round
 # Count begins at 0, so 6 means 7 guesses
+global MAX_GUESSES_PER_ROUND
 MAX_GUESSES_PER_ROUND = 6
 
 # Randomly select an answer for this round
+global round_answer
 round_answer = POSSIBLE_ANSWERS[random.randint(0, len(POSSIBLE_ANSWERS)-1)]
 # Ref: https://flexiple.com/python/python-regex-replace/
 global answer_display 
 answer_display = re.sub("[A-Za-z]", "^", round_answer)
 
 global num_round_guesses
-num_round_guesses_clear()
+num_round_guesses_clear() # sets num_round_guesses to 0
+
+
+# PROGRAM ENTRY POINT
 
 # 1. Guess a letter 2. Guess answer 3. Give up round 4. Quit
 while True:
