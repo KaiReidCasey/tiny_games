@@ -144,17 +144,6 @@ answer_display = re.sub("[A-Za-z]", "^", round_answer)
 
 num_guesses_this_round = 0
 
-# Print un-guessed game screen
-# print_game_screen(num_guesses_this_round)
-# print_game_screen(-1)
-# print_game_screen(0)
-# print_game_screen(1)
-# print_game_screen(2)
-# print_game_screen(3)
-# print_game_screen(4)
-# print_game_screen(5)
-# print_game_screen(6)
-
 # 1. Guess a letter 2. Guess answer 3. Give up round 4. Quit
 while True:
 	# Get & validate input
