@@ -196,9 +196,14 @@ def respond_to_guessed_char(guessed_char, in_answer):
 	return
 
 def guess_char():
+	global round_guessed_chars
 	guessed_char = get_from_user_char()
-	in_answer = check_char_against_answer(guessed_char)
-	respond_to_guessed_char(guessed_char, in_answer)
+	if guessed_char.lower() in round_guessed_chars:
+		respond_char_guessed_duplicate()
+	else:
+		in_answer = check_char_against_answer(guessed_char)
+		respond_to_guessed_char(guessed_char, in_answer)
+		round_guessed_chars += guessed_char
 	return
 
 def print_game_screen():
@@ -229,6 +234,8 @@ answer_display = re.sub("[A-Za-z]", "^", round_answer)
 global num_round_guesses
 num_round_guesses_clear() # sets num_round_guesses to 0
 
+global round_guessed_chars
+round_guessed_chars = []
 
 # PROGRAM ENTRY POINT
 
