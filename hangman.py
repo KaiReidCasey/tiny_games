@@ -256,6 +256,8 @@ def print_game_screen():
 	print_answer_display()
 	print_options_round()
 
+def pick_round_answer():
+	return POSSIBLE_ANSWERS[random.randint(0, len(POSSIBLE_ANSWERS)-1)]
 
 # VARIABLES, GLOBALS ETC
 
@@ -271,7 +273,7 @@ MAX_GUESSES_PER_ROUND = 6
 
 # Randomly select an answer for this round
 global round_answer
-round_answer = POSSIBLE_ANSWERS[random.randint(0, len(POSSIBLE_ANSWERS)-1)]
+round_answer = pick_round_answer()
 # Ref: https://flexiple.com/python/python-regex-replace/
 global answer_display 
 answer_display = re.sub("[A-Za-z]", "^", round_answer)
