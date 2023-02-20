@@ -40,6 +40,15 @@ def print_answer_display():
 	print("\nWord or phrase to guess:")
 	print(f"{answer_display}\n")
 
+def print_answer_revealed_display():
+	print("\nWord or phrase you were guessing:")
+	print(f"{answer_display}\n")
+
+def print_new_round_text():
+	print("\n/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\")
+	print("\nNew round!!")
+	print("\n/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\")
+
 # Ask user to guess a letter, enter the answer, give up, or quit
 def print_options_round():
 	print("What next?")
@@ -49,7 +58,7 @@ def get_user_option_selection():
 	user_input = False
 	while user_input == False:
 		try:
-			print_game_screen()
+			print_game_screen("same round")
 			selected_option = input('> ')
 			selected_option = int(selected_option)
 			if selected_option == 1 or selected_option == 2 or \
@@ -197,11 +206,9 @@ def respond_char_guessed_duplicate():
 
 def print_win_message():
 	print("You've won this round!!")
-	print("Please quit and restart the program to play again! :3")
 
 def print_message_round_lost():
 	print("You've lost this round!!")
-	print("Please quit and restart the program to play again! :3")
 
 def respond_to_guessed_char(guessed_char, in_answer):
 	if in_answer == 'guessed right':
@@ -251,13 +258,29 @@ def guess_answer():
 	respond_to_guessed_phrase(guessed_phrase, is_answer)
 	return
 
-def print_game_screen():
-	print_character()
-	print_answer_display()
-	print_options_round()
+def print_game_screen(round_type):
+	if round_type	== "same round":
+		print_character()
+		print_answer_display()
+		print_options_round()
+	elif round_type	== "new round":
+		print_character()
+		print_answer_revealed_display()
+		print_new_round_text()
+
 
 def pick_round_answer():
 	return POSSIBLE_ANSWERS[random.randint(0, len(POSSIBLE_ANSWERS)-1)]
+
+def set_new_answer_display():
+	return re.sub("[A-Za-z]", "^", round_answer)
+
+def start_new_round():
+	global round_answer
+	round_answer = pick_round_answer()
+	num_round_guesses_clear()
+	new_answer_display = set_new_answer_display()
+	update_answer_display(new_answer_display)
 
 # VARIABLES, GLOBALS ETC
 
@@ -276,7 +299,7 @@ global round_answer
 round_answer = pick_round_answer()
 # Ref: https://flexiple.com/python/python-regex-replace/
 global answer_display 
-answer_display = re.sub("[A-Za-z]", "^", round_answer)
+answer_display = set_new_answer_display()
 
 global num_round_guesses
 num_round_guesses_clear() # sets num_round_guesses to 0
@@ -298,6 +321,10 @@ while True:
 	elif selected_option == 4:
 		print("Goodbye!")
 		exit()
+	if get_win_status() == "Won round!" or get_win_status() == "Lost round!":
+		print_game_screen("new round")
+		start_new_round()
+
 
 # Send user to answer guessing prompt if selected
 
