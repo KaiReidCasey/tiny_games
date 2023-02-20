@@ -65,7 +65,12 @@ def get_user_option_selection():
 			print("Please try again.")
 			continue
 
+# TODO: Add validation
 def get_from_user_char():
+	user_guess = str(input('> '))
+	return user_guess
+
+def get_from_user_phrase():
 	user_guess = str(input('> '))
 	return user_guess
 
@@ -80,6 +85,14 @@ def check_char_against_answer(char_to_check):
 	elif char_to_check_lower in round_answer_lower and \
 	 char_to_check not in answer_display:
 		return "already guessed"
+
+def check_phrase_against_answer(phrase_to_check):
+	round_answer_lower = round_answer.lower()
+	phrase_to_check_lower = phrase_to_check.lower()
+	if phrase_to_check_lower == round_answer_lower:
+		return "guessed right"
+	elif phrase_to_check_lower != round_answer_lower:
+		return "guessed wrong"
 
 # Ref: https://www.w3schools.com/python/python_variables_global.asp#midcontentadcontainer
 def update_answer_display(new_answer_display):
@@ -113,7 +126,14 @@ def convert_list_of_strings_to_string(str_list):
 	new_string = "".join(str_list)
 	return new_string
 
-def create_new_answer_display(guessed_char):
+# This is called when we already know the guess is correct
+# I'm double checking anyway for now
+# The case of the guess may still be incorrect
+def create_new_answer_display_from_str(guessed_phrase):
+	if round_answer.lower() == guessed_phrase.lower():
+		return round_answer
+
+def create_new_answer_display_from_char(guessed_char):
 	# Figure out where match exists and then update answer_display
 	# Careful not to erase previous right answers!
 	match_indeces = get_location_of_matched_chars(guessed_char)
@@ -154,12 +174,17 @@ def num_round_guesses_won():
 	global num_round_guesses
 	num_round_guesses = -1
 
+def respond_phrase_guessed_correct(guessed_phrase):
+	print("\n~~^*^~~^*^~~^*^~~^*^~~")
+	print(f"  {guessed_phrase} is the answer!")
+	print("~~^*^~~^*^~~^*^~~^*^~~")
+
 def respond_char_guessed_correct(guessed_char):
 	print("\n~~^*^~~^*^~~^*^~~^*^~~")
 	print(f"  {guessed_char} is in the answer!")
 	print("~~^*^~~^*^~~^*^~~^*^~~")
 
-def respond_char_guessed_wrong():
+def respond_guessed_wrong():
 	print("\n~~^*^~~^*^~~^*^~~^*^~~")
 	print("  Nope!")
 	print("~~^*^~~^*^~~^*^~~^*^~~")
@@ -181,18 +206,32 @@ def print_message_round_lost():
 def respond_to_guessed_char(guessed_char, in_answer):
 	if in_answer == 'guessed right':
 		respond_char_guessed_correct(guessed_char)
-		new_answer_display = create_new_answer_display(guessed_char)
+		new_answer_display = create_new_answer_display_from_char(guessed_char)
 		update_answer_display(new_answer_display)
 		if get_win_status() == "Won round!":
 			print_win_message()
 	elif in_answer == 'guessed wrong':
-		respond_char_guessed_wrong()
+		respond_guessed_wrong()
 		num_round_guesses_increment()
 		if get_win_status() == "Lost round!":
 			print_message_round_lost()
 	# Not reachable yet
 	elif in_answer == "already guessed":
 		respond_char_guessed_duplicate()
+	return
+
+def respond_to_guessed_phrase(guessed_phrase, is_answer):
+	if is_answer == 'guessed right':
+		respond_phrase_guessed_correct(guessed_phrase)
+		new_answer_display = create_new_answer_display_from_str(guessed_phrase)
+		update_answer_display(new_answer_display)
+		if get_win_status() == "Won round!":
+			print_win_message()
+	elif is_answer == 'guessed wrong':
+		respond_guessed_wrong()
+		num_round_guesses_increment()
+		if get_win_status() == "Lost round!":
+			print_message_round_lost()
 	return
 
 def guess_char():
@@ -204,6 +243,12 @@ def guess_char():
 		in_answer = check_char_against_answer(guessed_char)
 		respond_to_guessed_char(guessed_char, in_answer)
 		round_guessed_chars += guessed_char
+	return
+
+def guess_answer():
+	guessed_phrase = get_from_user_phrase()
+	is_answer = check_phrase_against_answer(guessed_phrase)
+	respond_to_guessed_phrase(guessed_phrase, is_answer)
 	return
 
 def print_game_screen():
@@ -246,6 +291,8 @@ while True:
 	# Send user to char guessing prompt if selected
 	if selected_option == 1:
 		guess_char()
+	elif selected_option == 2:
+		guess_answer()
 	elif selected_option == 4:
 		print("Goodbye!")
 		exit()
