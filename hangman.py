@@ -8,6 +8,7 @@ Simple hangman game
 import random
 import re
 import ascii_creatures
+import time
 
 
 # FUNCTIONS:
@@ -45,6 +46,8 @@ def print_answer_revealed_display():
 	print(f"{answer_display}\n")
 
 def print_new_round_text():
+	print("\nLoading new round...\n")
+	time.sleep(5)
 	print("\n/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\")
 	print("\nNew round!!")
 	print("\n/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\")
