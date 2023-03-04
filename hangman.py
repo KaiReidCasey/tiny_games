@@ -174,6 +174,10 @@ def get_win_status():
 	else:
 		return "Current round neither won nor lost."
 
+def round_guessed_chars_clear():
+	global round_guessed_chars
+	round_guessed_chars = []
+
 def num_round_guesses_increment():
 	global num_round_guesses
 	num_round_guesses += 1
@@ -282,6 +286,7 @@ def start_new_round():
 	global round_answer
 	round_answer = pick_round_answer()
 	num_round_guesses_clear()
+	round_guessed_chars_clear()
 	new_answer_display = set_new_answer_display()
 	update_answer_display(new_answer_display)
 
