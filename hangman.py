@@ -43,7 +43,7 @@ def print_answer_display():
 
 def print_answer_revealed_display():
 	print("\nWord or phrase you were guessing:")
-	print(f"{answer_display}\n")
+	print(f"{round_answer}\n")
 
 def print_new_round_text():
 	print("\nLoading new round...\n")
