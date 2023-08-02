@@ -347,12 +347,10 @@ while True:
 		guess_char()
 	elif selected_option == 2:
 		guess_answer()
-	elif selected_option == 3:
-		quit_round()
 	elif selected_option == 4:
 		print("Goodbye!")
 		exit()
-	if get_win_status() == "Won round!" or get_win_status() == "Lost round!":
+	if get_win_status() == "Won round!" or get_win_status() == "Lost round!" or selected_option == 3:
 		print_game_screen("new round")
 		start_new_round()
 
