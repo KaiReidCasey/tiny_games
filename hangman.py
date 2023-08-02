@@ -282,6 +282,11 @@ def pick_round_answer():
 def set_new_answer_display():
 	return re.sub("[A-Za-z]", "^", round_answer)
 
+def quit_round():
+	print("\nQuitting round!")
+	print_answer_revealed_display()
+	start_new_round()
+
 def start_new_round():
 	global round_answer
 	round_answer = pick_round_answer()
@@ -342,6 +347,8 @@ while True:
 		guess_char()
 	elif selected_option == 2:
 		guess_answer()
+	elif selected_option == 3:
+		quit_round()
 	elif selected_option == 4:
 		print("Goodbye!")
 		exit()
