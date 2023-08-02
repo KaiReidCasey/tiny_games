@@ -290,12 +290,28 @@ def start_new_round():
 	new_answer_display = set_new_answer_display()
 	update_answer_display(new_answer_display)
 
+def get_possible_answer_list_from_file(file_path):
+	# TODO: Validate string
+	f_open = open(file_path,'r')
+	data = f_open.read()
+	f_open.close()
+	possible_answers = get_possible_answer_list_from_string(data)
+	return possible_answers
+
+def get_possible_answer_list_from_string(data):
+	obj_pass_pols = re.findall(PASSWORD_N_POLICY_REGEX, data)
+	return obj_pass_pols
+
+
+POSSIBLE_ANSWER_FILE_PATH = "hangman_answers.txt"
+PASSWORD_N_POLICY_REGEX = r"([a-zA-Z ]+)"
+
+
 # VARIABLES, GLOBALS ETC
 
 # Set possible answers
 global POSSIBLE_ANSWERS
-POSSIBLE_ANSWERS = ["The Gay Agenda", "tacos", "Nyan Cat", \
-  "Numa Numa Yay", "Badgers and Mushrooms"]
+POSSIBLE_ANSWERS = get_possible_answer_list_from_file(POSSIBLE_ANSWER_FILE_PATH)
 
 # Set num guesses allowed per round
 # Count begins at 0, so 6 means 7 guesses
