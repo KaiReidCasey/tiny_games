@@ -28,6 +28,6 @@ This is a terminal-based word/phrase guessing game. A cute ASCII character lets 
   - Hit the Enter key
 
 ### Rules
-- You can guess any letter of the English alphabet
-- The capitalization of the letter does not matter (`A` and `a` count as the same)
+- You can guess any letter of the English alphabet or any digit 0 through 9
+- The capitalization of letters does not matter (`A` and `a` count as the same)
 - You have 6 incorrect guesses before you lose
