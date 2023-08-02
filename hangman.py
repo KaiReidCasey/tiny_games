@@ -307,12 +307,50 @@ def get_possible_answer_list_from_string(data):
 	obj_pass_pols = re.findall(PASSWORD_N_POLICY_REGEX, data)
 	return obj_pass_pols
 
+def build_category_options():
+	building_answer_list_categories = {}
+	building_answer_list_categories[0] = ["nerdy", "nerdy_answers.txt"]
+	building_answer_list_categories[1] = ["mammals", "types_of_mammals.txt"]
+	building_answer_list_categories[2] = ["flowers", "types_of_flowers.txt"]
+	building_answer_list_categories[3] = ["countries", "countries.txt"]
+	building_answer_list_categories[4] = ["US states", "us_states.txt"]
+  # building_answer_list_categories[3] = ["computer languages and frameworks, etc", "programming_languages.txt",]
+	return building_answer_list_categories
 
-def select_game_type():
-	# nerdy, mammals, flowers, programming languages, countries, US states
-	return "hangman_answers/nerdy_answers.txt"
+CATEGORIES = build_category_options()
 
-POSSIBLE_ANSWER_FILE_PATH = select_game_type()
+def print_category_list():
+	print("\nWhich category would you like to guess from?")
+	print("Please select one of the following by entering its number:")
+	for key, option in CATEGORIES.items():
+		print(f"{key} - {option[0]}")
+
+def select_category():
+	# TODO: Change name of get_user_option_selection() for clarity
+	# TODO: remove code reuse
+	selected_option = get_category_selection()
+	return "hangman_answers/" + CATEGORIES[selected_option][1]
+
+def get_category_selection():
+	user_input = False
+	while user_input == False:
+		try:
+			print_category_list()
+			selected_option = input('> ')
+			selected_option = int(selected_option)
+			if selected_option >= 0 and selected_option < len(CATEGORIES):
+				user_input = True
+				return selected_option
+			else:
+				# TODO: Fix code reuse
+				print(f"{selected_option} is not a valid option.")
+				print("Please try again.")
+		except ValueError:
+			print(f"{selected_option} is not a valid option.")
+			print("Please try again.\n")
+			continue
+
+POSSIBLE_ANSWER_FILE_PATH = select_category()
 PASSWORD_N_POLICY_REGEX = r"([a-zA-Z ]+)"
 
 

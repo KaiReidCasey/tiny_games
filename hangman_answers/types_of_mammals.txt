@@ -1,0 +1,137 @@
+alpaca
+american bulldog
+american shorthair cat
+ape
+arctic hare
+armadillo
+bat
+beluga
+bison
+black bear
+blue whale
+bobcat
+boston terrier
+brown bear
+bulldog bat
+bunny
+burmese cat
+camel
+cat
+cattle
+cheetah
+chihuahua
+chimpanzee
+chincilla
+chipmunk
+chow chow
+clouded leopard
+collie
+cougar
+cow
+coyote
+dalmatian
+deer
+dog
+dolphin
+dwarf hamster
+echidna
+egyptian mau
+elephant seal
+elephant shrew
+elk
+english bulldog
+english springer spanial
+fancy rat
+ferret
+flying fox
+flying squirrel
+fox terrier
+fox terrier
+fruit bat
+fur seal
+gazelle
+gerbil
+german shepherd
+giant panda
+giraffe
+goat
+gopher
+gopher
+gorilla
+great dane
+guinea pig
+hamster
+hedgehog
+hippo
+horse
+human
+impala
+irish wolfhound
+jack russel terrier
+jackrabbit
+jaguar
+kangaroo rat
+killer whale
+koala
+labrador retriever
+lemming
+lemur
+lion
+lion
+main coon
+manatee
+maned wolf
+mastiff
+meerkat
+moose
+mouse
+mule deer
+naked mole rat
+narwhal
+ocelot
+opossum
+otter
+ox
+panda
+panther
+pig
+pit bull terrier
+platypus
+polar bear
+polar bear
+porcupine
+possum
+rabbit
+raccoon
+racoon dog
+rat
+red panda
+reindeer
+rex rat
+rhinoceros
+russian blue
+saint bernard
+sea lion
+seal
+sheep
+siamese cat
+siberian husky
+snow leopard
+snowshoe hare
+sphinx cat
+sphynx rat
+spider monkey
+squirrel
+standard rat
+tiger
+vampire bat
+vole
+water buffalo
+weasel
+welsh corgi
+western lowland gorilla
+whitetail deer
+wildebeest
+wolf
+wolverine
+wombat
