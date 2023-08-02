@@ -280,7 +280,7 @@ def pick_round_answer():
 	return POSSIBLE_ANSWERS[random.randint(0, len(POSSIBLE_ANSWERS)-1)]
 
 def set_new_answer_display():
-	return re.sub("[A-Za-z]", "^", round_answer)
+	return re.sub("[A-Za-z0-9]", "^", round_answer)
 
 def quit_round():
 	print("\nQuitting round!")
