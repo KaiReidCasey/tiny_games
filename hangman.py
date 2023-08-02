@@ -308,7 +308,11 @@ def get_possible_answer_list_from_string(data):
 	return obj_pass_pols
 
 
-POSSIBLE_ANSWER_FILE_PATH = "hangman_answers.txt"
+def select_game_type():
+	# nerdy, mammals, flowers, programming languages, countries, US states
+	return "hangman_answers.txt"
+
+POSSIBLE_ANSWER_FILE_PATH = select_game_type()
 PASSWORD_N_POLICY_REGEX = r"([a-zA-Z ]+)"
 
 
