@@ -357,11 +357,6 @@ while True:
 
 # Send user to answer guessing prompt if selected
 
-# Reveal answer if user gave up
-
-# Handle correct answer guess
-
-# Ask if user wants to play again or quit
 # May want a way to prevent repeated words in one session
 
 # Start new game in a way that allows code reuse if selected
