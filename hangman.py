@@ -275,9 +275,20 @@ def print_game_screen(round_type):
 		print_answer_revealed_display()
 		print_new_round_text()
 
-
 def pick_round_answer():
-	return POSSIBLE_ANSWERS[random.randint(0, len(POSSIBLE_ANSWERS)-1)]
+	if len(previous_answers) == len(POSSIBLE_ANSWERS):
+		print('CONGRATZ!! You\'ve played the whole game!!')
+		print('The cake was a lie.')
+		print('Please quit the game and restart if you would like guess')
+		print('words and phrases from another topic or attempt these again.')
+		exit()
+	round_answer = POSSIBLE_ANSWERS[random.randint(0, len(POSSIBLE_ANSWERS)-1)]
+	if round_answer in previous_answers:
+		print('Hmm, no not this one...')
+		round_answer = pick_round_answer()
+		return round_answer
+	previous_answers.append(round_answer)
+	return round_answer
 
 def set_new_answer_display():
 	return re.sub("[A-Za-z0-9]", "^", round_answer)
@@ -359,6 +370,9 @@ PASSWORD_N_POLICY_REGEX = r"([a-zA-Z ]+)"
 # Set possible answers
 global POSSIBLE_ANSWERS
 POSSIBLE_ANSWERS = get_possible_answer_list_from_file(POSSIBLE_ANSWER_FILE_PATH)
+
+global previous_answers
+previous_answers = []
 
 # Set num guesses allowed per round
 # Count begins at 0, so 6 means 7 guesses
