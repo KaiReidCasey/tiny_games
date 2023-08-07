@@ -409,20 +409,3 @@ while True:
 	if get_win_status() == "Won round!" or get_win_status() == "Lost round!" or selected_option == 3:
 		print_game_screen("new round")
 		start_new_round()
-
-
-# Send user to answer guessing prompt if selected
-
-# May want a way to prevent repeated words in one session
-
-# Start new game in a way that allows code reuse if selected
-
-# Optional later - add colors
-
-# Optional later - add different images to subtract from
-
-# Optional later - add option to import possible answer lists
-
-# Optional later - add option to select difficulty
-
-# Optional later - add ability to view guesses so far
