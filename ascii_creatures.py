@@ -66,9 +66,11 @@ class Ascii_Creatures():
 	"""Prints:
 	  ^ ^
 	 (^.^)
-	\(   )/
+	\\(   )/
 	  U U
-	  """
+	  * Except for an additional slash in the \\ above
+	  to prevent a syntax warning 
+	"""
 	def print_character_win(self):
 		print("  ^ ^\n (^.^)\n\\(   )/\n  U U")
 
@@ -76,8 +78,10 @@ class Ascii_Creatures():
 	Prints:
 	  Y Y
 	 (XOX)
-	\(   )/
+	\\(   )/
 	  o o
+	  * Except for an additional slash in the \\ above
+	  to prevent a syntax warning
 	"""
 	def print_character_lose(self):
 		print("  Y Y\n (XOX)\n\\(   )/\n  o o")
